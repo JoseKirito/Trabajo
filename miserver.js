@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
   res.send('Mi primer servidor!');
 })
 
-app.get('/friends', function (req, res) {
+app.get('/post', function (req, res) {
   var cantidad = _.random(5,10)
   var usuarios = _.times(cantidad, generarUsuario)
   res.json(usuarios);
