@@ -5,7 +5,7 @@ var _ = require('lodash');
 var uniqID = require('uniq-id');
 
 
-
+//"endopoint N° 1 /Post
 var generarUsuario = function(){
   var randomName = faker.name.findName();
   var randomId= uniqID.generateUUID('xxxxxxxx-xxxx-4xxx-xxxx-xxxxxxxxxxxx', 62)();
@@ -26,9 +26,23 @@ var generarUsuario = function(){
   }
 
 }
+//"endopoint N° 2 /company
+var generarEmpresa = function() {
+
+	var randomCompany = faker.company.companyName();
+	var randomPhone = faker.phone.phoneNumber();
+	var randomFinance = faker.finance.accountName();
+	return {
+
+		compania: randomCompany,
+		telefono: randomPhone,
+		finanzas: randomFinance,
+	}
+}
+
 
 app.get('/', function (req, res) {
-  res.send('Mi primer servidor!');
+  res.send('SERVIDOR RETO BACKEND');
 })
 
 app.get('/post', function (req, res) {
@@ -37,8 +51,10 @@ app.get('/post', function (req, res) {
   res.json(usuarios);
 })
 
-app.get('/amigos', function (req, res) {
-  res.send('Mis amigos');
+app.get('/company', function (req, res) {
+  var cantidad = _.random(2,15)
+  var empresas = _.times(cantidad, generarEmpresa)
+  res.json(empresas);
 })
 
 
